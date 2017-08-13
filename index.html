@@ -1,0 +1,103 @@
+<!doctype HTML>
+<html>
+
+<head>
+  <title>instant Art</title>
+  <link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+
+  <style>
+    #title {
+      font-family: Shrikhand, cursive;
+      font-size: 50px;
+      color: black;
+      letter-spacing: 3px;
+      margin-top: 1000px;
+      transition: all 0.5s ease-in-out;
+    }
+
+    span{
+      transition: all 0.5s ease-in-out;
+    }
+
+    a:hover{
+      cursor: pointer;
+    }
+
+    #title:hover{
+      color: #ffc107;
+    }
+
+    #title:hover span{
+      color: #ff0000;
+    }
+
+    center{
+      margin-top: 50px;
+    }
+
+    canvas{
+      margin-top: 60px;
+      box-shadow: 5px 5px 16px 0px rgba(171,171,171,0.82);
+    }
+
+    #text{
+      position: static;
+      font-size: 14px;
+      letter-spacing: 1px;
+      font-family: Shrikhand, cursive;
+      color: red;
+      margin-left: 300px;
+      margin-top: -20px;
+      transform: rotate(-20deg);
+      transition: all 0.5s ease-in-out;
+    }
+
+    #text:hover{
+      transform: rotate(-25deg);
+    }
+
+  </style>
+</head>
+
+<body>
+  <center><a id="title" onClick="spawnCircles()">instant <span>ART</span></a>
+    <a onClick=""><p id="text">Circles!</p></a>
+
+  <div id="container"><canvas id="canvas" height="600px" width="600px"></canvas></div>
+
+</center>
+
+
+
+  <script>
+
+  document.addEventListener('mousedown', function (event) {
+    if (event.detail > 1) {
+      event.preventDefault();
+      }
+    }, false);
+
+  var c=document.getElementById("canvas");
+  var ctx=c.getContext("2d");
+  ctx.clearRect(0, 0, c.width, c.height);
+
+  function spawnCircles(){
+    for(var i = 0; i < 200; i++){
+      var x = randomIntFromInterval(0,c.width);
+      var y = randomIntFromInterval(0,c.height);
+      var size = randomIntFromInterval(20,120);
+      ctx.fillStyle = '#'+ Math.random().toString(16).slice(-6);
+      ctx.beginPath();
+      ctx.arc(x,y,size,0,2*Math.PI);
+      ctx.fill();
+    }
+  }
+
+  function randomIntFromInterval(min,max)
+  {
+    return Math.floor(Math.random()*(max-min+1)+min);
+  }
+  </script>
+</body>
+
+</html>
